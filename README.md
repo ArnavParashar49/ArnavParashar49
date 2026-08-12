@@ -23,7 +23,7 @@
 
 </pre>
 
-<a href="https://git.io/typing-svg"><img src="https://readme-typing-svg.demolab.com/?font=Fira+Code&size=18&duration=3000&pause=1000&color=F75C7E&center=true&vCenter=true&width=435&lines=Arnav+Parashar;Building+NEO+%E2%80%94+voice-first+AI+companion" /></a>
+<a href="https://git.io/typing-svg"><img src="https://readme-typing-svg.demolab.com/?font=Fira+Code&size=18&duration=3000&pause=1000&color=F75C7E&center=true&vCenter=true&width=435&lines=Arnav+Parashar;Intern+at+foxora+%E2%80%94" /></a>
 
 <br/>
 
