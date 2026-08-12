@@ -1,7 +1,7 @@
 <div align="left">
 
 <pre>
-#.                                 .-                              <a href="https://git.io/typing-svg"><img src="https://readme-typing-svg.demolab.com/?        font=Fira+Code&size=18&duration=3000&pause=1000&color=F75C7E&center=true&vCenter=true&width=435&lines=Arnav+Parashar;Intern+at+foxora+%E2%80%94" /></a>
+#.                                 .-                              Arnav+Parashar|Intern|foxora.ai
 ###-                             .---
 #####+                         :-----
 #######*.                   .:-------
@@ -22,14 +22,5 @@
                .-##*:.                             
 
 </pre>
-
-
-
-<br/>
-
-<a href="https://github.com/anuraghazra/github-readme-stats"><img height="160" src="https://github-readme-stats.vercel.app/api?username=ArnavParashar49&show_icons=true&theme=radical&hide_border=true&count_private=true&rank_icon=github&hide=contribs" /></a>
-<a href="https://git.io/streak-stats"><img height="160" src="https://streak-stats.demolab.com/?user=ArnavParashar49&theme=radical&hide_border=true" /></a>
-
-<br/>
 
 </div>
