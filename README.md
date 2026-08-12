@@ -31,6 +31,4 @@
 
 <br/>
 
-<a href="https://skillicons.dev"><img src="https://skillicons.dev/icons?i=py,ts,react,nextjs,nodejs,tailwind,postgres,docker,git,linux&theme=dark&perline=10" /></a>
-
 </div>
