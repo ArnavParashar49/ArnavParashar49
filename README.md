@@ -20,7 +20,7 @@
             .+########*-                          |  status: shipping cool things           |
                .-##*:.                            '-----------------------------------------'
   
-        https://www.foxora.ai/
+           https://www.foxora.ai/
   
 </pre>
 </div>
