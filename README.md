@@ -13,11 +13,6 @@
 
 <br><br>
 
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/ArnavParashar49/ArnavParashar49/main/assets/dark/section-work.svg">
-  <img src="https://raw.githubusercontent.com/ArnavParashar49/ArnavParashar49/main/assets/light/section-work.svg" width="100%" alt="01. My Work. NEO 2.0, a voice-first Mac agent with a local router; NotchHub, a native Dynamic Island for the MacBook notch; and NEO, the menu-bar companion NEO 2.0 replaced.">
-</picture>
-
 <p>
 <a href="https://github.com/ArnavParashar49/Neo2.0">
   <picture>
@@ -44,7 +39,7 @@
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/ArnavParashar49/ArnavParashar49/main/assets/dark/stack.svg">
-  <img src="https://raw.githubusercontent.com/ArnavParashar49/ArnavParashar49/main/assets/light/stack.svg" width="100%" alt="02. The stack: four layers, three seams. AI: model and agent integration inside working systems, not demos. Automation: pipelines, scripts and tooling that remove repeated work. Interfaces: front ends and interaction behaviour that get used, measured and revised. Infrastructure: services, deployment and the parts that have to stay up. Built with Python, Swift, TypeScript, Rust and CSS.">
+  <img src="https://raw.githubusercontent.com/ArnavParashar49/ArnavParashar49/main/assets/light/stack.svg" width="100%" alt="01. The stack: four layers, three seams. AI: model and agent integration inside working systems, not demos. Automation: pipelines, scripts and tooling that remove repeated work. Interfaces: front ends and interaction behaviour that get used, measured and revised. Infrastructure: services, deployment and the parts that have to stay up. Built with Python, Swift, TypeScript, Rust and CSS.">
 </picture>
 
 <br><br>

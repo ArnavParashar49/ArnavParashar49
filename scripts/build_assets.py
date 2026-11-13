@@ -112,7 +112,8 @@ class Fonts:
             opts.desubroutinize = True
             opts.name_IDs = [1, 2]
             opts.notdef_outline = False
-            font = TTFont(os.path.join(FONT_DIR, FONT_FILES[fam][0]))
+            # recalcTimestamp=False keeps rebuilds byte-identical (no build time in the font)
+            font = TTFont(os.path.join(FONT_DIR, FONT_FILES[fam][0]), recalcTimestamp=False)
             sub = subset.Subsetter(opts)
             sub.populate(unicodes={ord(c) for c in chars} | {32})
             sub.subset(font)
@@ -485,15 +486,16 @@ def hero(theme):
         return f"transform:translate({f(x + (16 * s if flip else 0))}px,{f(y)}px) scale({f(-s if flip else s)},{f(s)})"
 
     sh.keyframes("foxmove", [
-        (0, tf(LEFT_X, RAIL_Y - 16, 1), "linear"),
-        (2.4, tf(MID_X, RAIL_Y - 16, 1), None),
+        # NotchHub's run frames face left: mirror the fox while it runs right
+        (0, tf(LEFT_X, RAIL_Y - 16, 1, True), "linear"),
+        (2.4, tf(MID_X, RAIL_Y - 16, 1, True), None),
+        (2.42, tf(MID_X, RAIL_Y - 16, 1), None),
         (OPEN0, tf(MID_X, RAIL_Y - 16, 1), "cubic-bezier(.3,1.25,.45,1)"),
         (OPEN1 + .1, tf(*BIG), None),
         (SHUT0, tf(*BIG), "cubic-bezier(.5,0,.3,1.1)"),
         (SHUT1 + .05, tf(MID_X, RAIL_Y - 16, 1), None),
         (SHUT1 + .3, tf(MID_X, RAIL_Y - 16, 1), None),
-        (SHUT1 + .35, tf(MID_X, RAIL_Y - 16, 1, True), "linear"),
-        (T - .05, tf(LEFT_X, RAIL_Y - 16, 1, True), None),
+        (SHUT1 + .35, tf(MID_X, RAIL_Y - 16, 1), "linear"),   # runs home leftwards, as drawn
         (T, tf(LEFT_X, RAIL_Y - 16, 1), None),
     ])
     sh.animate(".fox", "foxmove")
@@ -662,24 +664,6 @@ def accessory(d, i, x, y, sig):
         return "".join(f'<rect x="{f(x - 18 + j * 8)}" y="{f(y - h / 2)}" width="4" height="{h}" fill="{sig}" class="bar v{j + 1}"/>'
                        for j, h in enumerate(hs))
     return f'<g class="pop"><rect x="{x - 12}" y="{y - 12}" width="24" height="24" fill="{sig}"/>{check(x, y, 1.0, "#fff", 2.2)}</g>'
-
-
-# --------------------------------------------------------------------------- #
-# Section header: 01 / My Work
-# --------------------------------------------------------------------------- #
-def section_work(theme):
-    W, H = 960, 214
-    d = Doc(theme)
-    th = d.th
-    text = ("NEO 2.0, a voice-first Mac agent with a local router; NotchHub, a native Dynamic Island for the "
-            "MacBook notch; and NEO, the menu-bar companion NEO 2.0 replaced.")
-    lines = d.wrap(text, 380, "sans", 18.5, 400)
-    body = d.t(2, 19, "01", "mono", 12, th["faint"]) + d.hline(34, W, 14, th["lb"])
-    body += d.t(-4, 162, "My Work", "pixel", 108, th["ink"], 500)
-    y0 = 118 - (len(lines) - 1) * 27 / 2
-    for i, ln in enumerate(lines):
-        body += d.t(W - 380, y0 + i * 27, ln, "sans", 18.5, th["muted"], 400)
-    return d.render(W, H, "01. My Work", "My Work. " + text, body)
 
 
 # --------------------------------------------------------------------------- #
@@ -1004,7 +988,7 @@ def card_notchhub(theme):
 
 
 # --------------------------------------------------------------------------- #
-# 02 / The stack
+# 01 / The stack
 # --------------------------------------------------------------------------- #
 def stack(theme):
     T = 9.0
@@ -1034,7 +1018,7 @@ def stack(theme):
         y += hgt + 34
     H = int(y + 34)
 
-    out = [d.t(2, 19, "02", "mono", 12, th["faint"]), d.hline(34, W, 14, th["lb"]),
+    out = [d.t(2, 19, "01", "mono", 12, th["faint"]), d.hline(34, W, 14, th["lb"]),
            d.t(0, 84, "The stack", "sans", 38, th["ink"], 600), d.t(0, 116, "Four layers, three seams.", "sans", 19, th["muted"], 400)]
 
     CXp, A_, B_, TH_ = 262, 196, 113, 14
@@ -1125,7 +1109,7 @@ def stack(theme):
     out += items
 
     return d.render(
-        W, H, "02. The stack",
+        W, H, "01. The stack",
         "The stack: four layers, three seams. 04 AI: model and agent integration inside working systems, not demos. "
         "03 Automation: pipelines, scripts and tooling that remove repeated work. 02 Interfaces: front ends and "
         "interaction behaviour that get used, measured and revised. 01 Infrastructure: services, deployment and the "
@@ -1152,11 +1136,13 @@ def footer(theme):
     seq += cycle(9.4, 12.4, run, .09) + [(12.4, "sit")]
     fox = d.fox("ff", seq, "sit", 0, 0, S)
 
-    def tf(x):
-        return f"transform:translate({x}px,{FY}px)"
+    def tf(x, flip=False):
+        # NotchHub's run and skid frames face left: mirror them while the fox runs right
+        return f"transform:translate({x + (16 * S if flip else 0)}px,{FY}px) scale({-1 if flip else 1},1)"
 
-    sh.keyframes("run", [(0, tf(-70), None), (.2, tf(-70), "cubic-bezier(.25,.1,.3,1)"), (2.9, tf(SIT - 16), "cubic-bezier(.2,.6,.3,1)"),
-                         (3.3, tf(SIT), None), (9.4, tf(SIT), "cubic-bezier(.6,0,.9,.6)"), (12.3, tf(1010), None)])
+    sh.keyframes("run", [(0, tf(-70, True), None), (.2, tf(-70, True), "cubic-bezier(.25,.1,.3,1)"),
+                         (2.9, tf(SIT - 16, True), "cubic-bezier(.2,.6,.3,1)"), (3.3, tf(SIT, True), None), (3.33, tf(SIT), None),
+                         (9.38, tf(SIT), None), (9.4, tf(SIT, True), "cubic-bezier(.6,0,.9,.6)"), (12.3, tf(1010, True), None)])
     sh.animate(".runner", "run")
     sh.static.append(f".runner{{{tf(SIT)}}}")
     sh.fade("bye", [(3.9, 9.0)], fin=.25, fout=.2, rise=3)
@@ -1182,7 +1168,7 @@ def footer(theme):
 
 
 def main():
-    builders = [("hero", hero), ("section-work", section_work), ("card-neo", card_neo),
+    builders = [("hero", hero), ("card-neo", card_neo),
                 ("card-notchhub", card_notchhub), ("stack", stack), ("footer", footer)]
     for theme in THEMES:
         os.makedirs(os.path.join(OUT_DIR, theme), exist_ok=True)

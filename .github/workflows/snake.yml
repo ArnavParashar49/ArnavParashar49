@@ -20,13 +20,19 @@ jobs:
       - name: Checkout main branch
         uses: actions/checkout@v4
 
+      # svg-only runs on the runner itself (not in Docker), so the next step can edit its files
       - name: Generate snake SVGs
-        uses: Platane/snk@v3
+        uses: Platane/snk/svg-only@v3
         with:
           github_user_name: ${{ github.repository_owner }}
           outputs: |
             dist/github-snake.svg
             dist/github-snake-dark.svg?palette=github-dark
+
+      - name: Restyle the snake to match the README
+        run: |
+          python3 scripts/style_snake.py light dist/github-snake.svg
+          python3 scripts/style_snake.py dark dist/github-snake-dark.svg
 
       - name: Push to output branch
         uses: peaceiris/actions-gh-pages@v4
