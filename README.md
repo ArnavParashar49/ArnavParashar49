@@ -44,19 +44,6 @@
 
 <br><br>
 
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/ArnavParashar49/ArnavParashar49/output/github-snake-dark.svg">
-  <img src="https://raw.githubusercontent.com/ArnavParashar49/ArnavParashar49/output/github-snake.svg" width="100%" alt="A snake eating my contribution graph">
-</picture>
-
-<details>
-  <summary><sub>LIVE STATS</sub></summary>
-  <br>
-  <img src="https://www.gitprofile.me/api/card/profile?username=ArnavParashar49&amp;theme=tokyonight&amp;v=2" width="100%" alt="Live GitHub stats for ArnavParashar49">
-</details>
-
-<br>
-
 <a href="https://arnavparashar.com">
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/ArnavParashar49/ArnavParashar49/main/assets/dark/footer.svg">
